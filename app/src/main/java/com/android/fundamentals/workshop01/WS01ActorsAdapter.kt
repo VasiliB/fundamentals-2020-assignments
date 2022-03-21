@@ -1,15 +1,18 @@
 package com.android.fundamentals.workshop01
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.android.fundamentals.R
 import com.android.fundamentals.data.models.Actor
 
 // TODO 08: Extends this class from "RecyclerView.Adapter<>".
 //  Parametrize the generic with EmptyViewHolder.
 //  Add a constructor invocation to the RecyclerView.Adapter.
 //  Place a cursor on the WS01ActorsAdapter name, press "Alt+Enter", implement all three methods.
-class WS01ActorsAdapter {
+class WS01ActorsAdapter: RecyclerView.Adapter<EmptyViewHolder>() {
 
     private var actors = listOf<Actor>()
 
@@ -17,8 +20,18 @@ class WS01ActorsAdapter {
         actors = newActors
 
         // TODO 09: uncomment.
-        // notifyDataSetChanged()
+         notifyDataSetChanged()
     }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmptyViewHolder {
+        return EmptyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_actors_empty, parent, false))
+    }
+
+    override fun onBindViewHolder(holder: EmptyViewHolder, position: Int) {
+        Toast.makeText(holder.itemView.context, "Nothing to bind in default holder", Toast.LENGTH_LONG).show()
+    }
+
+    override fun getItemCount(): Int = 1
 
     // TODO 10: With "override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmptyViewHolder".
     //  There you have to return an instance of your ViewHolder:
@@ -41,3 +54,5 @@ class WS01ActorsAdapter {
 //  Studio will ask you to fix ViewHolder:
 //  - Add a default constructor to EmptyViewHolder class and pass a "itemView: View" as parameter;
 //  - Add a constructor invocation to the RecyclerView.ViewHolder and pass the "itemView".
+
+class EmptyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)

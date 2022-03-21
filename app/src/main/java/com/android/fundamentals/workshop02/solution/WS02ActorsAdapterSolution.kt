@@ -57,10 +57,12 @@ private class DataViewHolder(itemView: View) : ActorsViewHolder(itemView) {
     private val oscarState: TextView? = itemView.findViewById(R.id.tv_actor_oscar_state)
 
     fun onBind(options: RequestOptions, actor: Actor) {
-        Glide.with(context)
-            .load(actor.avatar)
-            .apply(options)
-            .into(avatar)
+        if (avatar != null) {
+            Glide.with(context)
+                .load(actor.avatar)
+                .apply(options)
+                .into(avatar)
+        }
 
         name?.text = actor.name
 
