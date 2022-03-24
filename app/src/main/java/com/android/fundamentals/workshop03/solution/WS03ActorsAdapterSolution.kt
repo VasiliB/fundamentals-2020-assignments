@@ -46,7 +46,8 @@ class WS03ActorsAdapter(
                     clickListener.onClick(actors[position])
                 }
             }
-            is EmptyViewHolder -> { /* nothing to bind */ }
+            is EmptyViewHolder -> { /* nothing to bind */
+            }
         }
     }
 
@@ -83,9 +84,9 @@ private class DataViewHolder(itemView: View) : ActorsViewHolder(itemView) {
 
     companion object {
         private val imageOption = RequestOptions()
-                .placeholder(R.drawable.ic_avatar_placeholder)
-                .fallback(R.drawable.ic_avatar_placeholder)
-                .circleCrop()
+            .placeholder(R.drawable.ic_avatar_placeholder)
+            .fallback(R.drawable.ic_avatar_placeholder)
+            .circleCrop()
     }
 }
 
